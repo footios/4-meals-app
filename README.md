@@ -7,6 +7,8 @@ This is a Udemy course
 It's a small app, where you may choose your meal, add it to favorites etc.
 
 
+
+
 ## Packages installed:
 ### expo install expo-fonts
 ### expo install react-native-gesture-handler react-native-reanimated 

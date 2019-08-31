@@ -3,27 +3,22 @@ import { StyleSheet, Text, View } from 'react-native';
 import * as Fonts from 'expo-font';
 import { AppLoading } from 'expo';
 
+import MealsNavigator from './navigation/MealsNavigator';
+
 const fetchFonts = () => {
-  return Fonts.loadAsync({
-    'open-sans': require('./assets/Fonts/OpenSans-Regular.ttf'),
-    'open-sans-bold': require('./assets/Fonts/OpenSans-Bold.ttf')
-  })
-}
+	return Fonts.loadAsync({
+		'open-sans': require('./assets/Fonts/OpenSans-Regular.ttf'),
+		'open-sans-bold': require('./assets/Fonts/OpenSans-Bold.ttf')
+	});
+};
 
 export default function App() {
-  const [fontLoaded, setFontLoaded] = useState(false);
+	const [ fontLoaded, setFontLoaded ] = useState(false);
 
-  if (!fontLoaded) {
-    return <AppLoading 
-    startAsync={fetchFonts}
-    onFinish={() => setFontLoaded(true)}
-    />
-  }
-	return (
-		<View style={styles.container}>
-			<Text style={{fontFamily: 'open-sans-bold' }} >Open up App.js to start working on your app!</Text>
-		</View>
-	);
+	if (!fontLoaded) {
+		return <AppLoading startAsync={fetchFonts} onFinish={() => setFontLoaded(true)} />;
+	}
+	return <MealsNavigator />;
 }
 
 const styles = StyleSheet.create({
