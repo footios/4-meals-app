@@ -11,7 +11,13 @@ import Colors from '../constants/Colors';
 const MealsNavigator = createStackNavigator(
 	{
 		Categories: {
-			screen: CategoriesScreen
+			screen: CategoriesScreen,
+			// headerTitle: 'Meal Categories', // 1) Leave it on its file 2) DOES NOT get overriden from screen's settings
+			// No need to repeat yourself, use defaultNavigationOptions
+			// navigationOptions: {
+			// 	backgroundColor: Platform.OS == 'android' ? Colors.primaryColor : ''
+			// },
+			// headerTintColor: Platform.OS == 'android' ? 'white' : Colors.primaryColor
 		},
 		CategoryMeals: {
 			screen: CategoryMealsScreen
@@ -19,11 +25,12 @@ const MealsNavigator = createStackNavigator(
 		MealDetail: MealDetailScreen
 	},
 	// 2d arg
-	{
+	{ 
+
 		// initialRouteName: 'CategoriesScreen',
-		//  mode: 'modal', // other animation transition
+		//  mode: 'modal', // other animation transition, default is `card`
 		// defaultNavigationOptions: apply to every screen
-		// Note: Default options are overriden!
+		// Note: Default options ARE overriden, from screen's settings!
 		defaultNavigationOptions: {
 			defaultNavigationOptions: {
 				backgroundColor: Platform.OS == 'android' ? Colors.primaryColor : ''

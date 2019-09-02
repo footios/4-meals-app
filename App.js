@@ -6,7 +6,7 @@ import { useScreens } from 'react-native-screens';
 
 import MealsNavigator from './navigation/MealsNavigator';
 
-useScreens(); // unlocks the native screens of each platform!
+useScreens(); // Unlocks the native screens of each platform! Better performance.
 
 const fetchFonts = () => {
 	return Fonts.loadAsync({
