@@ -26,7 +26,10 @@ const styles = StyleSheet.create({
 		margin: 15,
 		height: 150,
 		borderRadius: 10,
-		overflow: 'hidden' // Now the ripple effect (android) cannot go out of the box.
+		elevation: 7, // for android,
+		overflow: Platform.OS === 'android' && Platform.Version >= 21 ? 'hidden' : 'visible',
+		// overflow: 'hidden' // Now the ripple effect (android) cannot go out of the box.
+		// But the shadow is gone!!!
 	},
 	container: {
 		flex: 1,
@@ -35,7 +38,7 @@ const styles = StyleSheet.create({
 		shadowOpacity: 0.26,
 		shadowOffset: { width: 8, height: 9 },
 		shadowRadius: 10,
-		elevation: 3, // for android,
+		// elevation: 7, // for android. Move it to gridItem to have the shadow back!
 		padding: 15,
 		justifyContent: 'flex-start',
 		alignItems: 'flex-start'
