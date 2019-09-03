@@ -10,6 +10,7 @@ It's a small app, where you may choose your meal, add it to favorites etc.
 
 
 ## Packages installed:
+
 ### expo-fonts
 ### react-navigation
 ### react-native-screens
@@ -17,6 +18,14 @@ It's a small app, where you may choose your meal, add it to favorites etc.
 ### react-native-reanimated 
 ### react-navigation-header-buttons
 ### @expo/vector-icons
+### react-navigation-tabs
 
 Note: commit *react-native-screens installed* for using native screen components.
 It should be included in expo though.
+
+## Branches explained:
+
+### 1-createBottomTabNavigator-experiment
+Check this post on [Stackoverflow](https://stackoverflow.com/questions/57769242/how-to-set-navigationsoptions-for-two-tabs-and-check-the-routename-to-config-the)
+
+

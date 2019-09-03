@@ -1,5 +1,6 @@
 import React from 'react';
-import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
+import { createStackNavigator, createAppContainer } from 'react-navigation';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { Platform } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 
@@ -43,34 +44,66 @@ const MealsNavigator = createStackNavigator(
 	}
 );
 
+
 const MealsFavTabNavigator = createBottomTabNavigator(
 	{
-		Meals: {
-			screen: MealsNavigator,
-			// navigationOptions in config of a navigator, only matter if that
-			// navigator is used inside of another navigator.
-			navigationOptions: {
-				tabBarIcon: (tabInfo) => {
-					return <MaterialIcons name='restaurant-menu' size={25} color={tabInfo.tintColor} />
-				}
-			}
-		},
-		Favorites:{
-			screen: FavoritesScreen,
-			navigationOptions: {
-				tabBarLabel: 'Favorites!',
-				tabBarIcon: (tabInfo) => {
-					return <MaterialIcons name='favorite-border' size={25} color={tabInfo.tintColor} />
-				}
-			}
-		} 
+		Meals: MealsNavigator,
+		Favorites: FavoritesScreen
 	},
 	{
+		defaultNavigationOptions: ({ navigation }) => ({
+			tabBarIcon: ({ focused, tintColor }) => {
+				const { routeName } = navigation.state;
+				let iconName;
+				if (routeName === 'Meals') {
+					iconName = `restaurant${focused ? '' : '-menu'}`;		
+				} else if (routeName === 'Favorites') {
+					iconName = `favorite${focused ? '' : '-border'}`;
+				}
+				return <MaterialIcons name={iconName} size={25} color={tintColor} />;
+			}
+		}),
+	
 		tabBarOptions: {
-			activeTintColor: Colors.accentColor
+			activeTintColor: 'tomato',
+			inactiveTintColor: 'gray',
 		}
 	}
 );
+
+// A more simple alternative:
+// const MealsFavTabNavigator = createBottomTabNavigator(
+// 	{
+// 		Meals: {
+// 			screen: MealsNavigator,
+// 			// navigationOptions in config of a navigator, only matter if that
+// 			// navigator is used inside of another navigator.
+// 			navigationOptions: {
+// 				tabBarIcon: ({ focused, tintColor }) => {
+// 					let iconName = `restaurant${focused ? '' : '-menu'}`;
+// 					return <MaterialIcons name={iconName} size={25} color={tintColor} />;
+// 				}
+// 			}
+// 		},
+// 		Favorites: {
+// 			screen: FavoritesScreen,
+// 			navigationOptions: {
+// 				tabBarLabel: 'Favorites!',
+// 				tabBarIcon: ({ focused, tintColor }) => {
+// 					let iconName = `favorite${focused ? '' : '-border'}`;
+// 					return <MaterialIcons name={iconName} size={25} color={tintColor} />;
+// 				}
+// 			}
+// 		}
+// 	},
+// 	{
+// 		tabBarOptions: {
+// 			activeTintColor: Colors.active,
+// 			inactiveColor: Colors.inactive
+// 		}
+// 	}
+// );
+
 
 // export default createAppContainer(MealsNavigator);
 // Now we combine Navigators
