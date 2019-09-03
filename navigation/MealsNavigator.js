@@ -32,11 +32,13 @@ const MealsNavigator = createStackNavigator(
 		// defaultNavigationOptions: apply to every screen
 		// Note: Default options ARE overriden, from screen's settings!
 		defaultNavigationOptions: {
-			defaultNavigationOptions: {
-				backgroundColor: Platform.OS == 'android' ? Colors.primaryColor : ''
+			headerStyle: {
+			  backgroundColor: Platform.OS === 'android' ? Colors.primaryColor : ''
 			},
-			headerTintColor: Platform.OS == 'android' ? 'white' : Colors.primaryColor
-		}
+			headerTintColor:
+			  Platform.OS === 'android' ? 'white' : Colors.primaryColor,
+			headerTitle: 'A Screen'
+		  }
 	}
 );
 

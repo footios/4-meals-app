@@ -18,6 +18,7 @@ const MealItem = props => {
               style={styles.bgImage}
             >
               <View style={styles.titleContainer}>
+                {/* numberOfLines={1} You get ... if text is too long */}
                 <Text style={styles.title} numberOfLines={1}>
                   {props.title}
                 </Text>
@@ -38,15 +39,17 @@ const MealItem = props => {
 const styles = StyleSheet.create({
   mealItem: {
     height: 200,
-    width: '100%',
+    width: '95%',
     backgroundColor: '#f5f5f5',
     borderRadius: 10,
-    overflow: 'hidden'
+    overflow: 'hidden',
+    marginVertical: 10,
+    marginHorizontal: 10,
   },
   bgImage: {
-    width: '100%',
-    height: '100%',
-    justifyContent: 'flex-end',
+    width: '100%', // Have to set!
+    height: '100%', // Have to set!
+    justifyContent: 'flex-end', // Move title to the bottom of the image
   },
   mealRow: {
     flexDirection: 'row'
@@ -60,6 +63,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: '15%'
   },
+  // If you put these configs in the title, you get an extra background...
   titleContainer: {
     backgroundColor: 'rgba(0,0,0,0.5)',
     paddingVertical: 5,
