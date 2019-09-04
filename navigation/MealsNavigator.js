@@ -11,6 +11,20 @@ import FavoritesScreen from '../screens/FavoritesScreen';
 
 import Colors from '../constants/Colors';
 
+const defaultStackNavOptions = {
+	// initialRouteName: 'CategoriesScreen',
+	//  mode: 'modal', // other animation transition, default is `card`
+	// defaultNavigationOptions: apply to every screen
+	// Note: Default options ARE overriden, from screen's settings!
+	defaultNavigationOptions: {
+		headerStyle: {
+			backgroundColor: Platform.OS === 'android' ? Colors.primaryColor : ''
+		},
+		headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primaryColor,
+		headerTitle: 'A Screen'
+	}
+};
+
 // 1st arg: obj with screens, 2d arg: config of obj...
 const MealsNavigator = createStackNavigator(
 	{
@@ -18,7 +32,7 @@ const MealsNavigator = createStackNavigator(
 			screen: CategoriesScreen
 			// headerTitle: 'Meal Categories', // 1) Leave it on its file 2) DOES NOT get overriden from screen's settings
 			// No need to repeat yourself, use defaultNavigationOptions
-			// navigationOptions: {
+			// navigationOptions: { 
 			// 	backgroundColor: Platform.OS == 'android' ? Colors.primaryColor : ''
 			// },
 			// headerTintColor: Platform.OS == 'android' ? 'white' : Colors.primaryColor
@@ -30,17 +44,17 @@ const MealsNavigator = createStackNavigator(
 	},
 	// 2d arg
 	{
-		// initialRouteName: 'CategoriesScreen',
-		//  mode: 'modal', // other animation transition, default is `card`
-		// defaultNavigationOptions: apply to every screen
-		// Note: Default options ARE overriden, from screen's settings!
-		defaultNavigationOptions: {
-			headerStyle: {
-				backgroundColor: Platform.OS === 'android' ? Colors.primaryColor : ''
-			},
-			headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primaryColor,
-			headerTitle: 'A Screen'
-		}
+		defaultStackNavigationOptions: defaultStackNavOptions
+	}
+);
+
+const FavNavigator = createStackNavigator(
+	{
+		Favorites: FavoritesScreen,
+		MealDetail: MealDetailScreen
+	},
+	{
+		defaultStackNavigationOptions: defaultStackNavOptions
 	}
 );
 
@@ -58,7 +72,7 @@ const tabScreenConfig = {
 		}
 	},
 	Favorites: {
-		screen: FavoritesScreen,
+		screen: FavNavigator, // We need a stack-nav not a screen for our Favorites!
 		navigationOptions: {
 			// tabBarLabel: 'Favorites!',
 			tabBarIcon: (tabInfo) => {
@@ -69,8 +83,10 @@ const tabScreenConfig = {
 	}
 };
 
+
 const MealsFavTabNavigator =
 	Platform.OS === 'android'
+	// For android.
 		? createMaterialBottomTabNavigator(tabScreenConfig, {
 				activeTintColor: 'white',
 				shifting: true // If true, then shifting with ripple effect is possible.
