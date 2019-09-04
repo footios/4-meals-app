@@ -2,6 +2,7 @@ import React from 'react';
 import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import { Platform } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
+import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 
 import CategoriesScreen from '../screens/CategoriesScreen';
 import CategoryMealsScreen from '../screens/CategoryMealsScreen';
@@ -43,34 +44,43 @@ const MealsNavigator = createStackNavigator(
 	}
 );
 
-const MealsFavTabNavigator = createBottomTabNavigator(
-	{
-		Meals: {
-			screen: MealsNavigator,
-			// navigationOptions in config of a navigator, only matter if that
-			// navigator is used inside of another navigator.
-			navigationOptions: {
-				tabBarIcon: (tabInfo) => {
-					return <MaterialIcons name='restaurant-menu' size={25} color={tabInfo.tintColor} />
-				}
-			}
-		},
-		Favorites:{
-			screen: FavoritesScreen,
-			navigationOptions: {
-				tabBarLabel: 'Favorites!',
-				tabBarIcon: (tabInfo) => {
-					return <MaterialIcons name='favorite-border' size={25} color={tabInfo.tintColor} />
-				}
-			}
-		} 
+// Use this either for android or iOS
+const tabScreenConfig = {
+	Meals: {
+		screen: MealsNavigator,
+		// navigationOptions in config of a navigator, only matter if that
+		// navigator is used inside of another navigator.
+		navigationOptions: {
+			tabBarIcon: (tabInfo) => {
+				return <MaterialIcons name="restaurant-menu" size={25} color={tabInfo.tintColor} />;
+			},
+			tabBarColor: Colors.primaryColor
+		}
 	},
-	{
-		tabBarOptions: {
-			activeTintColor: Colors.accentColor
+	Favorites: {
+		screen: FavoritesScreen,
+		navigationOptions: {
+			// tabBarLabel: 'Favorites!',
+			tabBarIcon: (tabInfo) => {
+				return <MaterialIcons name="favorite-border" size={25} color={tabInfo.tintColor} />;
+			},
+			tabBarColor: Colors.accentColor
 		}
 	}
-);
+};
+
+const MealsFavTabNavigator =
+	Platform.OS === 'android'
+		? createMaterialBottomTabNavigator(tabScreenConfig, {
+				activeTintColor: 'white',
+				shifting: true // If true, then shifting with ripple effect is possible.
+				// barStyle: { backgroundColor: Colors.primaryColor }, // If you don't want the shifting effect.
+			})
+		: createBottomTabNavigator(tabScreenConfig, {
+				tabBarOptions: {
+					activeTintColor: Colors.accentColor
+				}
+			});
 
 // export default createAppContainer(MealsNavigator);
 // Now we combine Navigators
