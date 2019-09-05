@@ -33,36 +33,7 @@ const CategoriesScreen = (props) => {
 	);
 };
 
-// if (Platform.OS === 'android') {
-// 	CategoriesScreen.navigationOptions = (navData) => {
-// 		return {
-// 			headerTitle: 'Meal Categories',
-// 			headerRight: (
-// 				<HeaderButtons HeaderButtonComponent={HeaderButton}>
-// 					<Item title="Menu" iconName="menu" onPress={() => {
-// 						navData.navigation.toggleDrawer();
-// 					}} />
-// 				</HeaderButtons>
-// 			)
-// 		};
-// 	};
-// }
-
-// if (Platform.OS === 'ios') {
-// 	CategoriesScreen.navigationOptions = (navData) => {
-// 		return {
-// 			headerTitle: 'Meal Categories',
-// 			headerLeft: (
-// 				<HeaderButtons HeaderButtonComponent={HeaderButton}>
-// 					<Item title="Menu" iconName="menu" onPress={() => {
-// 						navData.navigation.toggleDrawer();
-// 					}} />
-// 				</HeaderButtons>
-// 			)
-// 		};
-// 	};
-// }
-
+// Check branch 2-show-different-menu-icon-for-android ...
 CategoriesScreen.navigationOptions = (navData) => {
 	return {
 		headerTitle: 'Meal Categories',
