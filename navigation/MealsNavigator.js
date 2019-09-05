@@ -78,7 +78,7 @@ const tabScreenConfig = {
         return <MaterialIcons name="favorite" size={25} color={tabInfo.tintColor} />;
       },
       tabBarColor: Colors.accentColor,
-      tabBarLabel: Platform.OS === 'android' ? <Text style={{fontFamily: 'open-sans-bold'}} >Favorites</Text> : 'Meals'
+      tabBarLabel: Platform.OS === 'android' ? <Text style={{fontFamily: 'open-sans-bold'}} >Favorites</Text> : 'Favorites'
     }
   }
 };
@@ -118,7 +118,7 @@ const MainNavigator = createDrawerNavigator(
     MealsFavs: {
       screen: MealsFavTabNavigator,
       navigationOptions: {
-        drawerLabel: 'Meals'
+        drawerLabel: 'Favorites'
       }
     },
     Filters: FiltersNavigator
