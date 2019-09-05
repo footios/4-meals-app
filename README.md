@@ -27,6 +27,7 @@ It should be included in expo though.
 
 ## Branches:
 ### 1-creatBottomTabNavigator-experiment
+Check this post on [Stackoverflow](https://stackoverflow.com/questions/57769242/how-to-set-navigationsoptions-for-two-tabs-and-check-the-routename-to-config-the)
 
 ### 2-show-different-menu-icon-for-android
 > Section: 6, 132
