@@ -100,26 +100,33 @@ const FiltersNavigator = createStackNavigator(
     defaultNavigationOptions: defaultStackNavOptions
   }
 );
-
 const MainNavigator = createDrawerNavigator(
   {
     MealsFavs: {
       screen: MealsFavTabNavigator,
       navigationOptions: {
-        drawerLabel: 'Meals'
+        drawerLabel: 'Meals',
+        drawerIcon: ({ tintColor }) =>  <MaterialIcons name="restaurant" size={25} color={tintColor} />
       }
     },
-    Filters: FiltersNavigator
+    Filters: {
+      screen: FiltersNavigator,
+      navigationOptions: {
+        drawerIcon: ({ tintColor }) =>  <MaterialIcons name="filter-list" size={25} color={tintColor} />
+      }
+    }
   },
   {
     contentOptions: {
       activeTintColor: Colors.accentColor,
       labelStyle: {
         fontFamily: 'open-sans-bold'
-      }
+      },
+      
     }
   }
 );
+
 
 export default createAppContainer(MainNavigator);
 
