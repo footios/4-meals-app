@@ -39,4 +39,4 @@ I had to create an extra `AndroidHeaderButton` though, because the 3 dots icon w
 
 <img src="./assets/gifs/androidMenuIcon.gif"
      alt="androidMenuIcon"
-     style="float: left; margin-right: 10px;" />
+     style="float: left; margin-right: 10px; width:100px; height:300px" />
