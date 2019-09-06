@@ -1,3 +1,4 @@
+// implemented in dummy-data.js    
 class Meal {
 	constructor(
 		id,

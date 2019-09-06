@@ -1,3 +1,4 @@
+// implemented in dummy-data.js
 class Category {
 	constructor(id, title, color) {
 		this.id = id;
