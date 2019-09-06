@@ -59,3 +59,5 @@ I added icons to every item...
 Display all the info about the recipe.
 
 ### 5-other-dependecies-for-useEffect
+
+### 6-define-meal-constructor-with-one-argument
