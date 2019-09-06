@@ -132,7 +132,7 @@ const MainNavigator = createDrawerNavigator(
     }
   }
 );
-
+// Wrap your most important Navigator with createAppContainer 
 export default createAppContainer(MainNavigator);
 
 

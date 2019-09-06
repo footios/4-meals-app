@@ -28,7 +28,7 @@ const CategoriesScreen = (props) => {
 			keyExtractor={(item, index) => item.id} // New versions of RN don't need this.
 			data={CATEGORIES}
 			renderItem={renderGridItem}
-			numColumns={2}
+			numColumns={2} // grid effect
 		/>
 	);
 };

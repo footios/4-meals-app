@@ -1,16 +1,22 @@
 This is a Udemy course
 [React Native - The Practical Guide](https://www.udemy.com/react-native-the-practical-guide/)
 
-## Sections:
+# Sections:
 ### 6. Navigation with React Navigation [THE MEALS APP]
 
-It's a small app, where you may choose your meal (which includes the recipie and extra info), add it to favorites etc.
+It's a small app, where you may choose your meal (which includes the recipie and extra info), add it to favorites, check some preferences (like Gluten-free or Vegetarian) etc.
 
 
 
-## Packages installed:
-### expo-fonts
+# Packages installed:
+
+## Packages for using expo with React Navigation:
 ### react-navigation
+### react-native-gesture-handler
+### react-native-reanimated
+Note: `expo install react-native-gesture-handler react-native-reanimated` `expo install` behind the sceens will run `npm install` but it will pick the specifiek versions for our expo version.
+
+### expo-fonts
 ### react-native-screens
 ### react-native-gesture-handler 
 ### react-native-reanimated 
