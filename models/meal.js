@@ -1,34 +1,19 @@
-// implemented in dummy-data.js    
-class Meal {
-	constructor(
-		id,
-		categoryIds,
-		title,
-		affordability,
-		complexity,
-		imageUrl,
-		duration,
-		ingredients,
-		steps,
-		isGlutenFree,
-		isVegan,
-		isVegetaria,
-		isLactoseFree
-	) {
-		this.id = id;
-		this.categoryIds = categoryIds;
-		this.title = title;
-		this.affordability = affordability;
-		this.complexity = complexity;
-		this.imageUrl = imageUrl;
-		this.duration = duration;
-		this.ingredients = ingredients;
-		this.steps = steps;
-		this.isGlutenFree = isGlutenFree;
-		this.isVegan = isVegan;
-		this.isVegetaria = isVegetaria;
-		this.isLactoseFree = isLactoseFree;
-	}
+// implemented in dummy-data.js 
+
+function Meal(info){
+	this.id = info.id;
+	this.categoryIds = info.categoryIds;
+	this.title = info.title;
+	this.affordability = info.affordability;
+	this.complexity = info.complexity;
+	this.imageUrl = info.imageUrl;
+	this.duration = info.duration;
+	this.ingredients = info.ingredients;
+	this.steps = info.steps;
+	this.isGlutenFree = info.isGlutenFree;
+	this.isVegan = info.isVegan;
+	this.isVegetaria = info.isVegetaria;
+	this.isLactoseFree = info.isLactoseFree;
 }
 
 export default Meal;
