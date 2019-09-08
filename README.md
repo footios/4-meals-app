@@ -61,6 +61,7 @@ I had to create an extra `AndroidHeaderButton` though, because the 3 dots icon w
 
 ### 3-config-drawer
 I added icons to every item...
+
 <img src="./assets/gifs/IconsToSideDrawer.gif"
      alt="IconsToSideDrawer"
      style="float: left; margin-right: 10px; width:50px; height:150px" />
