@@ -27,9 +27,10 @@ const styles = StyleSheet.create({
 		height: 150,
 		borderRadius: 10,
 		elevation: 7, // for android,
-		overflow: Platform.OS === 'android' && Platform.Version >= 21 ? 'hidden' : 'visible',
 		// overflow: 'hidden' // Now the ripple effect (android) cannot go out of the box.
 		// But the shadow is gone!!!
+		// Since overflow... is usefull only for android, check the OS before applying
+		overflow: Platform.OS === 'android' && Platform.Version >= 21 ? 'hidden' : 'visible',
 	},
 	container: {
 		flex: 1,

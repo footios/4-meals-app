@@ -6,8 +6,8 @@ import MealItem from '../components/MealItem';
 // Is getting used in CategoryMealsScreen and in FavoritesScreen
 const MealList = (props) => {
     const renderMealItem = (itemData) => {
+		// DON'T FORGET RETURN
 		return (
-			// DON'T FORGET RETURN
 			<MealItem
 				title={itemData.item.title}
 				complexity={itemData.item.complexity}

@@ -13,7 +13,6 @@ const MealItem = props => {
   return (
     <View style={styles.mealItem}>
       <TouchableOpacity onPress={props.onSelectMeal}>
-        <View>
           <View style={{ ...styles.mealRow, ...styles.mealHeader }}>
             <ImageBackground
               source={{ uri: props.image }}
@@ -32,7 +31,6 @@ const MealItem = props => {
             <DefaultText>{props.complexity.toUpperCase()}</DefaultText>
             <DefaultText>{props.affordability.toUpperCase()}</DefaultText>
           </View>
-        </View>
       </TouchableOpacity>
     </View>
   );

@@ -86,6 +86,7 @@ const tabScreenConfig = {
 const MealsFavTabNavigator =
   Platform.OS === 'android'
     ? createMaterialBottomTabNavigator(tabScreenConfig, {
+      // NO tabBarOptions...
         activeTintColor: 'white',
         shifting: true,
         barStyle: {
@@ -118,7 +119,7 @@ const MainNavigator = createDrawerNavigator(
     MealsFavs: {
       screen: MealsFavTabNavigator,
       navigationOptions: {
-        drawerLabel: 'Favorites'
+        drawerLabel: 'Meals'
       }
     },
     Filters: FiltersNavigator
@@ -128,8 +129,9 @@ const MainNavigator = createDrawerNavigator(
       activeTintColor: Colors.accentColor,
       labelStyle: {
         fontFamily: 'open-sans-bold'
-      }
-    }
+      },
+    },
+    drawerWidth: 200,
   }
 );
 // Wrap your most important Navigator with createAppContainer 
