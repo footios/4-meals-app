@@ -3,7 +3,8 @@
 *I also posted a question in the Q&A of the course:*
 
 ### How about passing one argument (an object) in the Meal class/function?
-Fotis · Lecture 121 · 2 days ago
+Fotis · Lecture 121 
+
 Hello Max,
 
 Please allow me to share my thoughts :)
@@ -35,7 +36,6 @@ export default Meal;
 ```
 
 dummy-data.js
-
 ```
 ...
 export const MEALS = [
@@ -100,28 +100,32 @@ Thanks :)
 =============================================================
 
 Jost Schmithals
-Jost — Teaching Assistant · 2 days ago
+Jost — Teaching Assistant 
 Hi!
 
 In general these are the options for passing parameters in JavaScript:
 
-● Passing single parameters is the shortest notation, but you have to always remember the proper order of parameters.
-````
+- Passing single parameters is the shortest notation, but you have to always remember the proper order of parameters.
+
+```
 const area1 = (width, height) => width * height;
 console.log(area1(3, 5));
 ```
 
-● When passing an options object, the parameters can be passed in an arbitrary order, but we have to introduce a named object which is verbose and can be confusing.
+- When passing an options object, the parameters can be passed in an arbitrary order, but we have to introduce a named object which is verbose and can be confusing.
+
 ```
 const area2 = (dimensions) => dimensions.width * dimensions.height;
 console.log(area2({ height: 5, width: 3 }));
 ```
 
-● Using object destructuring combines the best of both worlds: A concise syntax and an arbitrary parameters order.
+- Using object destructuring combines the best of both worlds: A concise syntax and an arbitrary parameters order.
+
 ```
 const area3 = ({ height, width }) => width * height;
 console.log(area3({ height: 5, width: 3 })); 
 ```
+
 Jost
 
 ===================================================================
