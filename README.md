@@ -29,9 +29,6 @@ It should be included in expo though.
 ### react-native-paper
 
 
-
-
-
 ## Branches:
 Branches are used to try out alternative ways to configure the app, 
 which the instructor didn't implement.
@@ -73,7 +70,10 @@ Display all the info about the recipe. It's an attempt to write the code before 
      alt="ingredients"
      style="float: left; margin-right: 10px; width:50px; height:150px" />
 
-### 5-other-dependecies-for-useEffect
+#### Check commit "simpler useEffect in FiltersScreen"
+This is something I tried out after the instructors way. But it seams simpler and more
+concise.
+
 
 ### 6-define-meal-constructor-with-one-argument
 Question at Udemy course:
