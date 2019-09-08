@@ -1,8 +1,8 @@
 #### Check commit: "Meal constructor with one argument".
 
-I also posted a question in the Q&A of the course:
+*I also posted a question in the Q&A of the course:*
 
-How about passing one argument (an object) in the Meal class/function?
+### How about passing one argument (an object) in the Meal class/function?
 Fotis · Lecture 121 · 2 days ago
 Hello Max,
 
@@ -15,7 +15,7 @@ After some googling I've found this article (Six reasons to define constructors 
 On my attempt to implement the Meal by passing an obj as an argument, the following came out, which works fine.
 
 meal.js
-
+```
 function Meal(info){
     this.id = info.id;
     this.categoryIds = info.categoryIds;
@@ -32,10 +32,11 @@ function Meal(info){
     this.isLactoseFree = info.isLactoseFree;
 }
 export default Meal;
-
+```
 
 dummy-data.js
 
+```
 ...
 export const MEALS = [
     new Meal({
@@ -82,7 +83,7 @@ export const MEALS = [
         isLactoseFree: false
     }),
 ...
-
+```
 
 In the article are mentioned some pros and cons, like:
 
@@ -95,6 +96,7 @@ In the article are mentioned some pros and cons, like:
 Anyway, I would like also your opinion on this, if you don't mind.
 
 Thanks :)
+
 =============================================================
 
 Jost Schmithals
@@ -104,18 +106,24 @@ Hi!
 In general these are the options for passing parameters in JavaScript:
 
 ● Passing single parameters is the shortest notation, but you have to always remember the proper order of parameters.
-
+````
 const area1 = (width, height) => width * height;
 console.log(area1(3, 5));
-● When passing an options object, the parameters can be passed in an arbitrary order, but we have to introduce a named object which is verbose and can be confusing.
+```
 
+● When passing an options object, the parameters can be passed in an arbitrary order, but we have to introduce a named object which is verbose and can be confusing.
+```
 const area2 = (dimensions) => dimensions.width * dimensions.height;
 console.log(area2({ height: 5, width: 3 }));
-● Using object destructuring combines the best of both worlds: A concise syntax and an arbitrary parameters order.
+```
 
+● Using object destructuring combines the best of both worlds: A concise syntax and an arbitrary parameters order.
+```
 const area3 = ({ height, width }) => width * height;
 console.log(area3({ height: 5, width: 3 })); 
+```
 Jost
+
 ===================================================================
 
 Fotis Tsakiris
