@@ -5,6 +5,7 @@ import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import HeaderButton from '../components/HeaderButton';
 import { MEALS } from '../data/dummy-data';
 import DefaultText from '../components/DefaultText';
+import Colors from '../constants/Colors';
 
 const MealDetailScreen = (props) => {
 	const mealId = props.navigation.getParam('mealId');
@@ -12,34 +13,53 @@ const MealDetailScreen = (props) => {
 
 	return (
 		<ScrollView style={styles.mealItem}>
-			<View style={{ ...styles.mealRow, ...styles.mealHeader }}>
-				<ImageBackground source={{ uri: selectedMeal.imageUrl }} style={styles.bgImage}>
-					<View style={styles.titleContainer}>
-						{/* numberOfLines={1} You get ... if text is too long */}
-						<Text style={styles.title} numberOfLines={1}>
-							{selectedMeal.title}
-						</Text>
-					</View>
-				</ImageBackground>
-			</View>
-			<View style={{ ...styles.mealRow, ...styles.mealDetail }}>
-				<DefaultText>{selectedMeal.duration}m</DefaultText>
-				<DefaultText>{selectedMeal.complexity.toUpperCase()}</DefaultText>
-				<DefaultText>{selectedMeal.affordability.toUpperCase()}</DefaultText>
+			<View style={styles.imageContainer}>
+				<View style={{ ...styles.mealRow, ...styles.mealHeader }}>
+					<ImageBackground source={{ uri: selectedMeal.imageUrl }} style={styles.bgImage}>
+						<View style={styles.titleContainer}>
+							{/* numberOfLines={1} You get ... if text is too long */}
+							<Text style={styles.title} numberOfLines={1}>
+								{selectedMeal.title}
+							</Text>
+						</View>
+					</ImageBackground>
+				</View>
+				<View style={{ ...styles.mealRow, ...styles.mealDetail }}>
+					<DefaultText style={styles.infoByImage}>{selectedMeal.duration}m</DefaultText>
+					<DefaultText style={styles.infoByImage}>{selectedMeal.complexity.toUpperCase()}</DefaultText>
+					<DefaultText style={styles.infoByImage}>{selectedMeal.affordability.toUpperCase()}</DefaultText>
+				</View>
 			</View>
 			<View>
 				<View style={styles.ingredients}>
-					<DefaultText>INGREDIENTS</DefaultText>
-					{selectedMeal.ingredients.map((ing, index) => <DefaultText key={index}>{ing}</DefaultText>)}
+					<DefaultText style={styles.titles}>INGREDIENTS</DefaultText>
+					{selectedMeal.ingredients.map((ing, index) => (
+						<DefaultText style={styles.text} key={index}>
+							{ing}
+						</DefaultText>
+					))}
 				</View>
 				<View style={styles.directions}>
-					<DefaultText>DIRECTIONS</DefaultText>
-					{selectedMeal.steps.map((step, index) => <DefaultText key={index}>{step}</DefaultText>)}
+					<DefaultText style={styles.titles}>DIRECTIONS</DefaultText>
+					{selectedMeal.steps.map((step, index) => (
+						<DefaultText style={styles.text} key={index}>
+							{step}
+						</DefaultText>
+					))}
 				</View>
-				<View style={styles.extraInfo} >
-					<DefaultText>GLUTEN FREE: {selectedMeal.isGlutenFree === false ? 'NO' : 'YES'}</DefaultText>
-					<DefaultText>VEGETERIAN: {selectedMeal.isVegetaria === false ? 'NO' : 'YES'}</DefaultText>
-					<DefaultText>LACTOSE FREE: {selectedMeal.isLactoseFree === false ? 'NO' : 'YES'}</DefaultText>
+				<View style={styles.extraInfo}>
+					<DefaultText style={styles.filters}>
+						GLUTEN FREE: {selectedMeal.isGlutenFree === false ? 'NO' : 'YES'}
+					</DefaultText>
+					<DefaultText style={styles.filters}>
+						VEGAN: {selectedMeal.isVegan === false ? 'NO' : 'YES'}
+					</DefaultText>
+					<DefaultText style={styles.filters}>
+						VEGETERIAN: {selectedMeal.isVegetaria === false ? 'NO' : 'YES'}
+					</DefaultText>
+					<DefaultText style={styles.filters}>
+						LACTOSE FREE: {selectedMeal.isLactoseFree === false ? 'NO' : 'YES'}
+					</DefaultText>
 				</View>
 			</View>
 		</ScrollView>
@@ -65,18 +85,26 @@ MealDetailScreen.navigationOptions = (navigationData) => {
 
 const styles = StyleSheet.create({
 	mealItem: {
-		height: 200,
+		height: 300,
 		width: '95%',
 		backgroundColor: '#f5f5f5',
 		borderRadius: 10,
 		overflow: 'hidden',
 		marginVertical: 10,
-		marginHorizontal: 10
+		marginHorizontal: 10,
+	},
+	imageContainer: {
+		width: '100%',
+		height: '50%'
 	},
 	bgImage: {
 		width: '100%', // Have to set!
 		height: '100%', // Have to set!
 		justifyContent: 'flex-end' // Move title to the bottom of the image
+	},
+	infoByImage: {
+		fontSize: 15,
+		fontWeight: 'bold'
 	},
 	mealRow: {
 		flexDirection: 'row'
@@ -90,20 +118,39 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		height: '15%'
 	},
+	titles: {
+		fontSize: 18,
+		fontWeight: 'bold'
+	},
 	ingredients: {
+		padding: 10,
 		flexDirection: 'column',
-		alignItems: 'center',
+		alignItems: 'flex-start',
 		paddingBottom: 20
 	},
 	directions: {
+		padding: 10,
 		flexDirection: 'column',
-		alignItems: 'center',
+		alignItems: 'flex-start',
 		paddingBottom: 20
 	},
+	text: {
+		fontSize: 18,
+		color: Colors.accentColor,
+		fontWeight: '800',
+		fontStyle: 'italic'
+		// textShadowColor: 'rgba(230,230,250, 0.5)',
+		// textShadowRadius: 20,
+		// textDecorationColor: 'black'
+	},
+	filters: {
+		fontSize: 15,
+		fontWeight: 'bold'
+	},
 	extraInfo: {
-		flexDirection: 'row',
-		justifyContent: 'space-between',
-		alignItems: 'center',
+		padding: 10,
+		justifyContent: 'flex-start',
+		alignItems: 'flex-start',
 		paddingBottom: 20
 	},
 	// If you put these configs in the title, you get an extra background...
