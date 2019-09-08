@@ -74,10 +74,12 @@ Display all the info about the recipe. It's an attempt to write the code before 
 This is something I tried out after the instructors way. But it seams simpler and more
 concise.
 
+#### Check commit: "Meal constructor with one argument".
 
-### 6-define-meal-constructor-with-one-argument
-Question at Udemy course:
-How about passing one argument (an object) in the Meal class/function?
+*I also posted a question in the Q&A of the course:*
+
+### How about passing one argument (an object) in the Meal class/function?
+Fotis · Lecture 121 
 
 Hello Max,
 
@@ -85,12 +87,12 @@ Please allow me to share my thoughts :)
 
 To start with, I was surprised with the amount of the arguments we have to pass to the Meal constructor. Then a label appeared on the screen (@1:19) saying to use the same order, otherwise the dummy-data won't work.
 
-After some googling I've found this article (Six reasons to define constructors with only one argument).
+After some googling I've found this article: "[Six reasons to define constructors with only one argument](https://gcanti.github.io/2014/09/25/six-reasons-to-define-constructors-with-only-one-argument.html)".
 
 On my attempt to implement the Meal by passing an obj as an argument, the following came out, which works fine.
 
 meal.js
-
+```
 function Meal(info){
     this.id = info.id;
     this.categoryIds = info.categoryIds;
@@ -107,9 +109,10 @@ function Meal(info){
     this.isLactoseFree = info.isLactoseFree;
 }
 export default Meal;
-
+```
 
 dummy-data.js
+```
 ...
 export const MEALS = [
     new Meal({
@@ -156,7 +159,7 @@ export const MEALS = [
         isLactoseFree: false
     }),
 ...
-
+```
 
 In the article are mentioned some pros and cons, like:
 
@@ -170,23 +173,49 @@ Anyway, I would like also your opinion on this, if you don't mind.
 
 Thanks :)
 
-Response:
+=============================================================
+
 Jost Schmithals
-Jost — Teaching Assistant · 14 hours ago
+Jost — Teaching Assistant 
 Hi!
 
 In general these are the options for passing parameters in JavaScript:
 
-● Passing single parameters is the shortest notation, but you have to always remember the proper order of parameters.
+- Passing single parameters is the shortest notation, but you have to always remember the proper order of parameters.
 
+```
 const area1 = (width, height) => width * height;
 console.log(area1(3, 5));
-● When passing an options object, the parameters can be passed in an arbitrary order, but we have to introduce a named object which is verbose and can be confusing.
+```
 
+- When passing an options object, the parameters can be passed in an arbitrary order, but we have to introduce a named object which is verbose and can be confusing.
+
+```
 const area2 = (dimensions) => dimensions.width * dimensions.height;
 console.log(area2({ height: 5, width: 3 }));
-● Using object destructuring combines the best of both worlds: A concise syntax and an arbitrary parameters order.
+```
 
+- Using object destructuring combines the best of both worlds: A concise syntax and an arbitrary parameters order.
+
+```
 const area3 = ({ height, width }) => width * height;
 console.log(area3({ height: 5, width: 3 })); 
+```
+
 Jost
+
+===================================================================
+
+Fotis Tsakiris
+Fotis · 2 days ago
+Hi Jost,
+
+Thanks for clearing it out for me.
+
+Yes, object destructuring is combining both worlds.
+
+I'll keep that in mind.
+
+Thanks again!
+
+Happy coding :)
