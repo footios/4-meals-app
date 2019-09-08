@@ -11,7 +11,7 @@ Please allow me to share my thoughts :)
 
 To start with, I was surprised with the amount of the arguments we have to pass to the Meal constructor. Then a label appeared on the screen (@1:19) saying to use the same order, otherwise the dummy-data won't work.
 
-After some googling I've found this article (Six reasons to define constructors with only one argument).
+After some googling I've found this article: "[Six reasons to define constructors with only one argument](https://gcanti.github.io/2014/09/25/six-reasons-to-define-constructors-with-only-one-argument.html)".
 
 On my attempt to implement the Meal by passing an obj as an argument, the following came out, which works fine.
 
