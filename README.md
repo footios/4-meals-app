@@ -28,7 +28,6 @@ It should be included in expo though.
 ## Branches:
 *In Branches I have my own attempts to solve problems. And sometimes these attemps are done, just before the instructor's way is shown.*
 
-### 1-creatBottomTabNavigator-experiment
 
 ### 2-show-different-menu-icon-for-android
 > Section: 6, 132
