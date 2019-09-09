@@ -3,14 +3,15 @@ This is a Udemy course
 
 # Sections:
 ### 6. Navigation with React Navigation [THE MEALS APP]
+### 7. State Management & Redux
 
 It's a small app, where you may choose your meal (which includes the recipie and extra info), add it to favorites, check some preferences (like Gluten-free or Vegetarian) etc.
 
 
 
 # Packages installed:
+### For Section 6:
 ### expo-fonts
-
 ## Packages for using expo with React Navigation:
 ### react-navigation
 ### react-native-gesture-handler
@@ -28,11 +29,16 @@ It should be included in expo though.
 ### react-navigation-material-bottom-tabs
 ### react-native-paper
 
+### For Section 7:
+### redux react-redux
+### react-redux
+
 
 ## Branches:
 Branches are used to try out alternative ways to configure the app, 
 which the instructor didn't implement.
 
+### For Section 6:
 ### 1-creatBottomTabNavigator-experiment
 Check this post on Stackoverflow [How to set navigationsOptions for two tabs and check the routeName to config the different iconNames?](https://stackoverflow.com/questions/57769242/how-to-set-navigationsoptions-for-two-tabs-and-check-the-routename-to-config-the)
 
