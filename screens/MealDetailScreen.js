@@ -21,6 +21,8 @@ const MealDetailScreen = (props) => {
 	const mealId = props.navigation.getParam('mealId');
 	const selectedMeal = availableMeals.find((meal) => meal.id === mealId);
 
+	// For changing the favorite icon
+	const selectedFavMeal = useSelector(state => state.meals.favoriteMeals.some(meal => meal.id === mealId)) 
 	const dispatch = useDispatch();
 
 	// Change the state of favoritedMeals array in redux.
@@ -47,6 +49,10 @@ const MealDetailScreen = (props) => {
 		},
 		[ toggleFavoriteHandler ]
 	);
+
+	useEffect(() => {
+		props.navigation.setParams({selectedFavMeal: selectedFavMeal})
+	}, [selectedFavMeal])
 	return (
 		<ScrollView>
 			<Image source={{ uri: selectedMeal.imageUrl }} style={styles.image} />
@@ -74,14 +80,15 @@ MealDetailScreen.navigationOptions = (navigationData) => {
 	// Get the function you set in useEffect to trigger it in onPress
 	const toggleFavorite = navigationData.navigation.getParam('toggleFav');
 
-
+// for changing the icon
+const isFavorite = navigationData.navigation.getParam('selectedFavMeal')
 	return {
 		headerTitle: mealTitle,
 		headerRight: (
 			<HeaderButtons HeaderButtonComponent={HeaderButton}>
 				{/* You can have more than one items = icons. But use different title! */}
 				{/* TODO: change the icon to 'favorite' when clicked */}
-				<Item title="Favorite" iconName="favorite-border" onPress={toggleFavorite} />
+				<Item title="Favorite" iconName={isFavorite ? 'favorite' : "favorite-border"} onPress={toggleFavorite} />
 				{/* <Item title="Favorite" iconName="ios-star-outline" onPress={() => console.log('Mark as favorite')} /> */}
 			</HeaderButtons>
 		)
