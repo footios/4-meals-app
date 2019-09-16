@@ -21,6 +21,9 @@ const MealDetailScreen = (props) => {
 	const mealId = props.navigation.getParam('mealId');
 	const selectedMeal = availableMeals.find((meal) => meal.id === mealId);
 
+	// Get favorite meals to use it in header to toggle the icon
+	const favoriteMeals = useSelector((state) => state.meals.favoriteMeals);
+
 	const dispatch = useDispatch();
 
 	// Change the state of favoritedMeals array in redux.
@@ -47,8 +50,17 @@ const MealDetailScreen = (props) => {
 		},
 		[ toggleFavoriteHandler ]
 	);
-	return (
-		<ScrollView>
+
+	// For changing the favorite icon
+	useEffect(
+		() => {
+			props.navigation.setParams({ favMeals: favoriteMeals });
+		},
+		[ favoriteMeals ]
+		);
+		
+		return (
+			<ScrollView>
 			<Image source={{ uri: selectedMeal.imageUrl }} style={styles.image} />
 			<View style={styles.details}>
 				<DefaultText>{selectedMeal.duration}m</DefaultText>
@@ -73,15 +85,27 @@ MealDetailScreen.navigationOptions = (navigationData) => {
 	
 	// Get the function you set in useEffect to trigger it in onPress
 	const toggleFavorite = navigationData.navigation.getParam('toggleFav');
-
-
+	
+	// Get info about a meal, if it's a favorite or not.
+	// THIS DOES NOT WORK!!!
+	// favMeals returns undefined!?
+	const mealId = navigationData.navigation.getParam('mealId');
+	let favMeals = [];
+	favMeals = navigationData.navigation.getParam('favMeals');
+	console.log(favMeals);
+	const isFavorite = favMeals.find((meal) => meal.id === mealId);
+	
 	return {
 		headerTitle: mealTitle,
 		headerRight: (
 			<HeaderButtons HeaderButtonComponent={HeaderButton}>
 				{/* You can have more than one items = icons. But use different title! */}
 				{/* TODO: change the icon to 'favorite' when clicked */}
-				<Item title="Favorite" iconName="favorite-border" onPress={toggleFavorite} />
+				<Item
+					title="Favorite"
+					iconName={isFavorite ? 'favorite' : 'favorite-border'}
+					onPress={toggleFavorite}
+					/>
 				{/* <Item title="Favorite" iconName="ios-star-outline" onPress={() => console.log('Mark as favorite')} /> */}
 			</HeaderButtons>
 		)
