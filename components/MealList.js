@@ -16,7 +16,12 @@ const MealList = (props) => {
 				image={itemData.item.imageUrl}
 				onSelectMeal={() => {
                     //  We have a `navigation` prop because we forwarded it in CategoryMealsScreen.
-					props.navigation.navigate({ routeName: 'MealDetail', params: { mealId: itemData.item.id } });
+					props.navigation.navigate({ routeName: 'MealDetail', 
+					params: { 
+						mealId: itemData.item.id,
+						mealTitle: itemData.item.title
+					
+					} });
 				}}
 			/>
 		);
