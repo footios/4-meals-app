@@ -20,9 +20,10 @@ const FilterSwitch = (props) => {
 		</View>
 	);
 };
-
+// HERE WE'RE GOING TO TRY
+// to dispatch(setFilters) when we turn a switch,
+// so we will not have to press the save icon.
 const FiltersScreen = (props) => {
-	const { navigation } = props;
 
 	const [ isGlutenFree, setIsGlutenFree ] = useState(false);
 	const [ isLactoseFree, setIsLactoseFree ] = useState(false);
@@ -31,22 +32,35 @@ const FiltersScreen = (props) => {
 
 	const dispatch = useDispatch();
 
-	// If we change one of the filters state then the saveFilters function is memoized,
-	// because of useCallback and its dependencies!
-	// Then if save icon (in the headerRight) is pressed, 
-	// the saveFilters function runs.
-	// That means that we get a snap-shot of the state of the filters 
-	// and that state is saved in Redux memory with dispatch(setFilters).
-	// The saveFilters function runs when we press the save icon 
-	// because in useEffect we setted a pointer of the saveFilters func,
-	// as a parameter to the react-navigation state, 
-	// which then we got in the save icon and trigger it in onPress.
-	
-	// Note that useEffect first run happens when the component mounts and 
-	// the render method runs.
-	// Then it also runs if it's dependecies change. In our case saveFilters.
+	const saveGluten = useCallback(
+		(newValue) => {
+			setIsGlutenFree(newValue);
+		},
+		[ isGlutenFree, dispatch ]
+	);
 
-	const saveFilters = useCallback(
+	const saveLactose = useCallback(
+		(newValue) => {
+			setIsLactoseFree(newValue);
+		},
+		[ isLactoseFree, dispatch ]
+	);
+
+	const saveVegan = useCallback(
+		(newValue) => {
+			setIsVegan(newValue);
+		},
+		[ isVegan, dispatch ]
+	);
+
+	const saveVegetarian = useCallback(
+		(newValue) => {
+			setIsVegetarian(newValue);
+		},
+		[ isVegetarian, dispatch ]
+	);
+
+	useEffect(
 		() => {
 			const appliedFilters = {
 				glutenFree: isGlutenFree,
@@ -55,30 +69,17 @@ const FiltersScreen = (props) => {
 				vegetarian: isVegetarian
 			};
 			dispatch(setFilters(appliedFilters));
-			// console.log(appliedFilters);
-			
 		},
 		[ isGlutenFree, isLactoseFree, isVegan, isVegetarian, dispatch ]
-	);
-
-	useEffect(
-		() => {
-			navigation.setParams({ save: saveFilters });
-		},
-		[ saveFilters ] // Why can't we just use "isGlutenFree, isLactoseFree, isVegan, isVegetarian " here?
 	);
 
 	return (
 		<View style={styles.screen}>
 			<Text style={styles.title}>Available Filters / Restrictions</Text>
-			<FilterSwitch state={isGlutenFree} onChange={(newValue) => setIsGlutenFree(newValue)} label="GLuten-free" />
-			<FilterSwitch
-				state={isLactoseFree}
-				onChange={(newValue) => setIsLactoseFree(newValue)}
-				label="Lactose-free"
-			/>
-			<FilterSwitch state={isVegan} onChange={(newValue) => setIsVegan(newValue)} label="Vegan" />
-			<FilterSwitch state={isVegetarian} onChange={(newValue) => setIsVegetarian(newValue)} label="Vegetarian" />
+			<FilterSwitch state={isGlutenFree} onChange={saveGluten} label="GLuten-free" />
+			<FilterSwitch state={isLactoseFree} onChange={saveLactose} label="Lactose-free" />
+			<FilterSwitch state={isVegan} onChange={saveVegan} label="Vegan" />
+			<FilterSwitch state={isVegetarian} onChange={saveVegetarian} label="Vegetarian" />
 		</View>
 	);
 };
@@ -95,11 +96,6 @@ FiltersScreen.navigationOptions = (navData) => {
 						navData.navigation.toggleDrawer();
 					}}
 				/>
-			</HeaderButtons>
-		),
-		headerRight: (
-			<HeaderButtons HeaderButtonComponent={HeaderButton}>
-				<Item title="Save" iconName="save" onPress={navData.navigation.getParam('save')} />
 			</HeaderButtons>
 		)
 	};

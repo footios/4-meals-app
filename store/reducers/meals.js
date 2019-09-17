@@ -43,6 +43,8 @@ const mealsReducer = (state = initialState, action) => {
 				return true;
 			});
 			// Return a new state.
+			console.log(appliedFilters);
+			
 			return {...state, filteredMeals: filteredMeals}
 		default:
 			return state; // is actually first reached when app starts
