@@ -20,7 +20,10 @@ const MealDetailScreen = (props) => {
 	const availableMeals = useSelector((state) => state.meals.meals);
 	const mealId = props.navigation.getParam('mealId');
 	
-	// For changing the favorite icon
+	// For changing the favorite icon.
+	// Note: We do handle it also in the MealsList, 
+	// so we don't get the delay when we switch back and forth from Meals to FavoritesScreen. 
+	// but, the status of favorites changes here! Thus we handle it here too!
 	const currentMealIsFavorite = useSelector((state) => state.meals.favoriteMeals.some((meal) => meal.id === mealId));
 	
 	const selectedMeal = availableMeals.find((meal) => meal.id === mealId);
@@ -35,7 +38,7 @@ const MealDetailScreen = (props) => {
 		[ dispatch, mealId ]
 	);
 
-	// setParams in useEffect. Other wise you'll get an infinite loop.
+	// setParams in useEffect. Other wise you'll get an infinite loop. !!!
 	// But because useEffect runs after the component loads, for the 1st time,
 	// the header title shows up after a fraction of a second.
 	// Thus a better alternative would be to pass the title in the comp
