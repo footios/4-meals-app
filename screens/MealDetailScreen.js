@@ -19,12 +19,14 @@ const MealDetailScreen = (props) => {
 	// Here we don't care about any filters, just for specific `id`. So get just meals.
 	const availableMeals = useSelector((state) => state.meals.meals);
 	const mealId = props.navigation.getParam('mealId');
-	const selectedMeal = availableMeals.find((meal) => meal.id === mealId);
-
+	
 	// For changing the favorite icon
-	const selectedFavMeal = useSelector(state => state.meals.favoriteMeals.some(meal => meal.id === mealId)) 
+	const currentMealIsFavorite = useSelector((state) => state.meals.favoriteMeals.some((meal) => meal.id === mealId));
+	
+	const selectedMeal = availableMeals.find((meal) => meal.id === mealId);
+	
 	const dispatch = useDispatch();
-
+	
 	// Change the state of favoritedMeals array in redux.
 	const toggleFavoriteHandler = useCallback(
 		() => {
@@ -50,9 +52,14 @@ const MealDetailScreen = (props) => {
 		[ toggleFavoriteHandler ]
 	);
 
-	useEffect(() => {
-		props.navigation.setParams({selectedFavMeal: selectedFavMeal})
-	}, [selectedFavMeal])
+	// For changing the favorite's icon. But it had a delay at showing up!
+	useEffect(
+		() => {
+			props.navigation.setParams({ isFav: currentMealIsFavorite });
+		},
+		[ currentMealIsFavorite ]
+	);
+	
 	return (
 		<ScrollView>
 			<Image source={{ uri: selectedMeal.imageUrl }} style={styles.image} />
@@ -73,22 +80,28 @@ MealDetailScreen.navigationOptions = (navigationData) => {
 	// This was used for the headerTitle...
 	// const mealId = navigationData.navigation.getParam('mealId');
 	// const selectedMeal = MEALS.find((meal) => meal.id === mealId);
-	
+
 	// Get the mealTitle you set in MealList.
 	const mealTitle = navigationData.navigation.getParam('mealTitle');
-	
+
 	// Get the function you set in useEffect to trigger it in onPress
 	const toggleFavorite = navigationData.navigation.getParam('toggleFav');
 
-// for changing the icon
-const isFavorite = navigationData.navigation.getParam('selectedFavMeal')
+	// for changing the icon
+	const isFavorite = navigationData.navigation.getParam('isFav');
+	// console.log(isFavorite);
+	
 	return {
 		headerTitle: mealTitle,
 		headerRight: (
 			<HeaderButtons HeaderButtonComponent={HeaderButton}>
 				{/* You can have more than one items = icons. But use different title! */}
 				{/* TODO: change the icon to 'favorite' when clicked */}
-				<Item title="Favorite" iconName={isFavorite ? 'favorite' : "favorite-border"} onPress={toggleFavorite} />
+				<Item
+					title="Favorite"
+					iconName={isFavorite ? 'favorite' : 'favorite-border'}
+					onPress={toggleFavorite}
+				/>
 				{/* <Item title="Favorite" iconName="ios-star-outline" onPress={() => console.log('Mark as favorite')} /> */}
 			</HeaderButtons>
 		)

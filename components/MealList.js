@@ -1,11 +1,22 @@
 import React from 'react';
 import { View, FlatList, StyleSheet } from 'react-native';
+import { useSelector } from 'react-redux';
 
 import MealItem from '../components/MealItem';
 
 // Is getting used in CategoryMealsScreen and in FavoritesScreen
 const MealList = (props) => {
+	// You can use useSelector only in the root comp. Not in nested funcs.
+	const favoriteMeals = useSelector((state) => state.meals.favoriteMeals);
+
+	// console.log(favoriteMeals);
+	
     const renderMealItem = (itemData) => {
+		// For changing the favorite icon.
+		// When we get a single item, we check if it's a favorite
+		const isFavorite = favoriteMeals.some(meal => meal.id === itemData.item.id);
+		// console.log(isFavorite);
+		
 		// DON'T FORGET RETURN
 		return (
 			<MealItem
@@ -19,8 +30,8 @@ const MealList = (props) => {
 					props.navigation.navigate({ routeName: 'MealDetail', 
 					params: { 
 						mealId: itemData.item.id,
-						mealTitle: itemData.item.title
-					
+						mealTitle: itemData.item.title,
+						isFav: isFavorite
 					} });
 				}}
 			/>
