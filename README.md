@@ -76,10 +76,12 @@ Display all the info about the recipe. It's an attempt to write the code before 
      alt="ingredients"
      style="float: left; margin-right: 10px; width:50px; height:150px" />
 
+### 5-other-dependecies-for-useEffect
 #### Check commit "simpler useEffect in FiltersScreen"
 This is something I tried out after the instructors way. But it seams simpler and more
 concise.
 
+### 6-define-meal-constructor-with-one-argument
 #### Check commit: "Meal constructor with one argument".
 
 *I also posted a question in the Q&A of the course:*
@@ -225,3 +227,7 @@ I'll keep that in mind.
 Thanks again!
 
 Happy coding :)
+
+
+### 7-dispatch-setFilters-when-switching
+#### Check commit: just switch and save - no save icon
