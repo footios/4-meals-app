@@ -228,6 +228,7 @@ Thanks again!
 
 Happy coding :)
 
+### For Section 7:
 
 ### 7-dispatch-setFilters-when-switching
 #### Check commit: just switch and save - no save icon
