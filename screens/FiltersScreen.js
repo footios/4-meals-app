@@ -65,7 +65,7 @@ const FiltersScreen = (props) => {
 		() => {
 			navigation.setParams({ save: saveFilters });
 		},
-		[ saveFilters ] // Why can't we just use "isGlutenFree, isLactoseFree, isVegan, isVegetarian " here?
+		[ saveFilters ] 
 	);
 
 	return (
