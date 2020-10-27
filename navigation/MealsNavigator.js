@@ -1,33 +1,33 @@
-import React from 'react';
-import { Text, Platform } from 'react-native';
+import React from "react";
+import { Text, Platform } from "react-native";
 import {
   createStackNavigator,
   createBottomTabNavigator,
   createAppContainer,
   createDrawerNavigator
-} from 'react-navigation';
-import { MaterialIcons } from '@expo/vector-icons';
-import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
+} from "react-navigation";
+import { MaterialIcons } from "@expo/vector-icons";
+import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
 
-import CategoriesScreen from '../screens/CategoriesScreen';
-import CategoryMealsScreen from '../screens/CategoryMealsScreen';
-import MealDetailScreen from '../screens/MealDetailScreen';
-import FavoritesScreen from '../screens/FavoritesScreen';
-import FiltersScreen from '../screens/FiltersScreen';
-import Colors from '../constants/Colors';
+import CategoriesScreen from "../screens/CategoriesScreen";
+import CategoryMealsScreen from "../screens/CategoryMealsScreen";
+import MealDetailScreen from "../screens/MealDetailScreen";
+import FavoritesScreen from "../screens/FavoritesScreen";
+import FiltersScreen from "../screens/FiltersScreen";
+import Colors from "../constants/Colors";
 
 const defaultStackNavOptions = {
   headerStyle: {
-    backgroundColor: Platform.OS === 'android' ? Colors.primaryColor : ''
+    backgroundColor: Platform.OS === "android" ? Colors.primaryColor : ""
   },
   headerTitleStyle: {
-    fontFamily: 'open-sans-bold'
+    fontFamily: "open-sans-bold"
   },
   headerBackTitleStyle: {
-    fontFamily: 'open-sans'
+    fontFamily: "open-sans"
   },
-  headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primaryColor,
-  headerTitle: 'A Screen'
+  headerTintColor: Platform.OS === "android" ? "white" : Colors.primaryColor,
+  headerTitle: "A Screen"
 };
 
 const MealsNavigator = createStackNavigator(
@@ -63,31 +63,47 @@ const tabScreenConfig = {
     navigationOptions: {
       tabBarIcon: tabInfo => {
         return (
-          <MaterialIcons name="restaurant" size={25} color={tabInfo.tintColor} />
+          <MaterialIcons
+            name="restaurant"
+            size={25}
+            color={tabInfo.tintColor}
+          />
         );
       },
       tabBarColor: Colors.primaryColor,
       // Use Platform... otherwise we loose the color from iOS.
-      tabBarLabel: Platform.OS === 'android' ? <Text style={{fontFamily: 'open-sans-bold'}} >Meals</Text> : 'Meals'
+      tabBarLabel:
+        Platform.OS === "android" ? (
+          <Text style={{ fontFamily: "open-sans-bold" }}>Meals</Text>
+        ) : (
+          "Meals"
+        )
     }
   },
   Favorites: {
     screen: FavNavigator,
     navigationOptions: {
       tabBarIcon: tabInfo => {
-        return <MaterialIcons name="favorite" size={25} color={tabInfo.tintColor} />;
+        return (
+          <MaterialIcons name="favorite" size={25} color={tabInfo.tintColor} />
+        );
       },
       tabBarColor: Colors.accentColor,
-      tabBarLabel: Platform.OS === 'android' ? <Text style={{fontFamily: 'open-sans-bold'}} >Favorites</Text> : 'Favorites'
+      tabBarLabel:
+        Platform.OS === "android" ? (
+          <Text style={{ fontFamily: "open-sans-bold" }}>Favorites</Text>
+        ) : (
+          "Favorites"
+        )
     }
   }
 };
 
 const MealsFavTabNavigator =
-  Platform.OS === 'android'
+  Platform.OS === "android"
     ? createMaterialBottomTabNavigator(tabScreenConfig, {
-      // NO tabBarOptions...
-        activeTintColor: 'white',
+        // NO tabBarOptions...
+        activeTintColor: "white",
         shifting: true,
         barStyle: {
           backgroundColor: Colors.primaryColor
@@ -97,7 +113,7 @@ const MealsFavTabNavigator =
         tabBarOptions: {
           activeTintColor: Colors.accentColor,
           labelStyle: {
-            fontFamily: 'open-sans-bold'
+            fontFamily: "open-sans-bold"
           }
         }
       });
@@ -119,7 +135,7 @@ const MainNavigator = createDrawerNavigator(
     MealsFavs: {
       screen: MealsFavTabNavigator,
       navigationOptions: {
-        drawerLabel: 'Meals'
+        drawerLabel: "Meals"
       }
     },
     Filters: FiltersNavigator
@@ -128,22 +144,14 @@ const MainNavigator = createDrawerNavigator(
     contentOptions: {
       activeTintColor: Colors.accentColor,
       labelStyle: {
-        fontFamily: 'open-sans-bold'
-      },
+        fontFamily: "open-sans-bold"
+      }
     },
-    drawerWidth: 200,
+    drawerWidth: 200
   }
 );
-// Wrap your most important Navigator with createAppContainer 
+// Wrap your most important Navigator with createAppContainer
 export default createAppContainer(MainNavigator);
-
-
-
-
-
-
-
-
 
 // THERE IS SOMETHING I DID WRONG AND THE HEADER BAR COLOR WOULD NOT SHOW UP!
 // import React from 'react';
@@ -201,7 +209,6 @@ export default createAppContainer(MainNavigator);
 // 		defaultNavigationOptions: defaultStackNavOptions
 // 	}
 // );
-
 
 // const FavNavigator = createStackNavigator(
 // 	{
@@ -282,5 +289,5 @@ export default createAppContainer(MainNavigator);
 // 		  }
 // 		}
 // 	  );
-	  
+
 // 	  export default createAppContainer(MainNavigator);
